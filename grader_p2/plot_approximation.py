@@ -10,11 +10,11 @@ def plot_approximation(
     tqdm_desc: str,
     var_name: str,
     true_value: Any,
-    method_name: str
+    method_name: str,
+    num_trials: int
 ):
     random.seed(student_id)
 
-    num_trials = 10000
     approximations = [
         approx_func()
         for _ in tqdm(range(num_trials), desc=tqdm_desc)
