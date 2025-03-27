@@ -34,7 +34,7 @@ def plot_approximation(
     plt.figure(figsize=(10, 6))
     plt.hist(approximations, bins=30, color='blue', edgecolor='black', alpha=0.7)
     plt.axvline(x=sample_mean, color='green', linestyle='dashed', linewidth=2, label=f"Trung bình mẫu: {sample_mean:.5f}")
-    plt.axvline(x=true_value, color='red', linestyle='dashed', linewidth=2, label=f"Giá trị thực của $\pi$: {true_value}")
+    plt.axvline(x=true_value, color='red', linestyle='dashed', linewidth=2, label=f"Giá trị thực của {var_name}: {true_value:.5f}")
     plt.xlabel(f"Giá trị {var_name} xấp xỉ")
     plt.ylabel("Tần số")
     plt.title(f"Biểu đồ phần bố xấp xỉ {var_name} bằng {method_name}\nTrung bình mẫu: {sample_mean:.5f}, Phương sai mẫu: {sample_variance:.5f}")
