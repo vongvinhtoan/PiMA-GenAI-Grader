@@ -3,7 +3,7 @@ from .grade_p2 import grade as grade_p2
 from .grade_p3 import grade as grade_p3
 from .grade_p4 import grade as grade_p4
 
-def grade(
+def grade_all(
     sample_needle,
     is_lie_across,
     ImportanceSampling,

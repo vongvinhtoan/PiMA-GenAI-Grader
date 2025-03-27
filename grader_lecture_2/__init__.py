@@ -6,5 +6,10 @@ from .grade_p4 import grade as grade_p4
 from .grade_all import grade_all
 
 __all__ = [
-    'plot_approximation'
+    'plot_approximation',
+    'grade_all',
+    'grade_p1',
+    'grade_p2',
+    'grade_p3',
+    'grade_p4',
 ]
