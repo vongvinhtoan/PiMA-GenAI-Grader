@@ -48,7 +48,7 @@ def grade(
 
     success_rate = num_success / num_trials
     if is_logging:
-        print(f"\n\tSuccess rate: {success_rate:.4f}")
+        print(f"\tSuccess rate: {success_rate:.4f}")
         print(f"\tNumber of success: {num_success}")
         print(f"\tNumber of trials: {num_trials}")
         print(f"\tAlpha: {alpha}")

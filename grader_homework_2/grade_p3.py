@@ -46,7 +46,7 @@ def grade(
     score = 1.0 / 2 ** int(abs((mean - np.pi) / step))
 
     if is_logging:
-        print(f"\n\tMean: {mean:.4f}")
+        print(f"\tMean: {mean:.4f}")
         print(f"\tNumber of trials: {num_trials}")
         print(f"\tN: {N}")
         print(f"\tScore: {score:.4f}")
