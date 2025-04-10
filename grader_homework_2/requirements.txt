@@ -1,0 +1,6 @@
+# Copy this for forced reinstall
+# pip install --force-reinstall -r requirements.txt
+numpy
+pandas
+matplotlib
+tqdm
