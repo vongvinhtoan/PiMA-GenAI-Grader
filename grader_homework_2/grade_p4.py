@@ -47,7 +47,7 @@ def grade(
 
     score = max(var_q_star, var_q/2)
     score = min(score, var_q)
-    score = (score - var_q / 2) / (var_q / 2)
+    score = 1 - (score - var_q / 2) / (var_q / 2)
     score = round(score / 0.05) * 0.05
 
     if is_logging:
