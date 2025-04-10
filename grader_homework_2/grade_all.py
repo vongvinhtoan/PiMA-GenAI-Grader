@@ -63,12 +63,11 @@ def grade_all(
         <td style="padding: 12px; text-align: right;">🎯 <strong>$scorefinal</strong></td>
       </tr>
     </table>
-    <p style="margin-top: 20px; font-size: 15px; color: #222;"><strong>Excellent work! 🚀 Keep reaching higher!</strong></p>
   </div>
 </div>
 """). substitute(
         score1 = f"{int(result_p1 * 100)}%",
-        score2 = f"Not graded",
+        score2 = f"Bài tập không chấm",
         score3 = f"{int(result_p3 * 100)}%",
         score4 = f"{int(result_p4 * 100)}%",
         scorefinal = f"{int((result_p1 + result_p3 + result_p4) / 3 * 100)}%"
