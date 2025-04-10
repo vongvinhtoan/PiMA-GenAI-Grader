@@ -20,7 +20,7 @@ def grade(
             N = N
         )
 
-    num_trials = 10
+    num_trials = 10_000
     num_success = 0
     alpha = 0.05
     N = 50
