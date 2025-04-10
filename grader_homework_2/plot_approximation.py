@@ -29,12 +29,6 @@ def plot_approximation(
     sample_mean = np.mean(approximations)
     sample_variance = np.var(approximations, ddof=1)
 
-    # 95% CI
-    se = np.sqrt(sample_variance / num_trials)
-    lower_bound = sample_mean - 1.96 * se
-    upper_bound = sample_mean + 1.96 * se
-    print(f"Khoảng tin cậy 95%: ({lower_bound:.4f}, {upper_bound:.4f})")
-
     # Plot histogram
     plt.figure(figsize=(10, 6))
     plt.hist(approximations, bins=30, color='blue', edgecolor='black', alpha=0.7)

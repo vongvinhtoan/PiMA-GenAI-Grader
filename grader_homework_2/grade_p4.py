@@ -43,10 +43,18 @@ def grade(
     list_approx_func = [better_approx_pi_IS(r, N) for r in list_r]
     list_approx = [func() for func in tqdm(list_approx_func, desc="Grading problem 4", unit="trial")]
 
-    var_q_star = np.var(list_approx)
+    var_q_star = np.var(list_approx, ddof=1)
+
+    score = max(var_q_star, var_q/2)
+    score = min(score, var_q)
+    score = (score - var_q / 2) / (var_q / 2)
+    score = round(score / 0.05) * 0.05
 
     if is_logging:
         print(f"\n\tVariance of q_star: {var_q_star:.4f}")
         print(f"\tVariance of q: {var_q:.4f}")
         print(f"\tNumber of trials: {num_trials}")
+        print(f"\tScore: {score:.4f}")
         print(f"\tN: {N}")
+
+    return score
