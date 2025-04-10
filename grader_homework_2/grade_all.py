@@ -17,6 +17,8 @@ def grade_all(
         is_lie_across
     )
 
+    print(f"Problem 1: {result_p1:.2f}")
+
     result_p2 = grade_p2(
         ImportanceSampling
     )
@@ -33,4 +35,3 @@ def grade_all(
         better_pdf_IS
     )
 
-    

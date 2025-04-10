@@ -23,7 +23,7 @@ def grade(
     num_trials = 10_000
     num_success = 0
     alpha = 0.05
-    N = 50
+    N = 100
 
     params = [
         (random.uniform(0, 100), random.uniform(0, 100))
@@ -45,4 +45,5 @@ def grade(
         if p_value > alpha:
             num_success += 1
 
-    print(f"Number of trials passed: {num_success}/{num_trials}")
+    success_rate = num_success / num_trials
+    return min(success_rate / (1 - alpha), 1)
