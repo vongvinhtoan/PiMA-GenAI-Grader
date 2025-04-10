@@ -76,9 +76,7 @@ def grade_all(
         score2 = f"{int(result_p2 * 100)}%" if result_p2 is not None else f"Bài tập không chấm",
         score3 = f"{int(result_p3 * 100)}%" if result_p3 is not None else f"Bài tập không chấm",
         score4 = f"{int(result_p4 * 100)}%" if result_p4 is not None else f"Bài tập không chấm",
-        scorefinal = f"{np.mean([
-            result for result in [result_p1, result_p2, result_p3, result_p4] if result is not None
-        ]) * 100:.2f}%"
+        scorefinal = f"{np.mean([result for result in [result_p1, result_p2, result_p3, result_p4] if result is not None]) * 100:.2f}%"
     )
 
     display_html(HTML(html_template))
