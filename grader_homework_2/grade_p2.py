@@ -1,6 +1,11 @@
-
+import numpy as np
+import random
+from scipy.stats import norm
+from tqdm import tqdm
 
 def grade(
     ImportanceSampling
 ):
-    print(f"Grading problem 2")
+    random.seed(b'grade_p2')
+
+    

@@ -1,8 +1,9 @@
-
+import random
 
 def grade(
     ImportanceSampling,
     in_square_pdf,
     pdf_IS
 ):
-    print(f"Grading problem 3")
+    random.seed(b'grade_p3')
+    return 0
