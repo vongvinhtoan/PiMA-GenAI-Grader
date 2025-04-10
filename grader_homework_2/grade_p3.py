@@ -42,31 +42,13 @@ def grade(
     list_approx = [func() for func in tqdm(list_approx_func, desc="Grading problem 3", unit="trial")]
 
     mean = np.mean(list_approx)
-    var = np.var(list_approx)
-    std = np.std(list_approx)
+    step = 0.05
+    score = 1.0 / 2 ** int(abs((mean - np.pi) / step))
 
-    se = std / np.sqrt(num_trials)
-    step = 1.96 * se
-    lower_bound = mean - step
-    upper_bound = mean + step
-    score = 1
-    count = 1
-    while True:
-        if lower_bound <= np.pi <= upper_bound:
-            break
-        score /= 0.5
-        lower_bound += step
-        upper_bound -= step
-        count += 1
-        if score < 0.01:
-            break
     if is_logging:
         print(f"\n\tMean: {mean:.4f}")
-        print(f"\tVariance: {var:.4f}")
-        print(f"\tStandard deviation: {std:.4f}")
         print(f"\tNumber of trials: {num_trials}")
         print(f"\tN: {N}")
-        print(f"\tCount: {count}")
         print(f"\tScore: {score:.4f}")
 
     return round(score / 0.05) * 0.05
