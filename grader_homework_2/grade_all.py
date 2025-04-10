@@ -73,5 +73,5 @@ def grade_all(
         score4 = f"{int(result_p4 * 100)}%",
         scorefinal = f"{int((result_p1 + result_p3 + result_p4) / 3 * 100)}%"
     )
-    
 
+    display_html(HTML(html_template))
