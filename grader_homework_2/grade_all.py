@@ -65,7 +65,7 @@ def grade_all(
         <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: right;"><strong>$score4</strong></td>
       </tr>
       <tr style="background-color: #ffe57f; font-weight: bold;">
-        <td style="padding: 12px;">Final Score</td>
+        <td style="padding: 12px;">Tổng điểm</td>
         <td style="padding: 12px; text-align: right;">🎯 <strong>$scorefinal</strong></td>
       </tr>
     </table>

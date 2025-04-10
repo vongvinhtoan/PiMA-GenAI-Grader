@@ -7,4 +7,3 @@ def grade(
     is_logging = False
 ):
     random.seed(b'grade_p4')
-    return 0
