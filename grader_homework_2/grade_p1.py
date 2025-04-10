@@ -53,4 +53,6 @@ def grade(
         print(f"\tNumber of trials: {num_trials}")
         print(f"\tAlpha: {alpha}")
         print(f"\tN: {N}")
-    return min(success_rate / (1 - alpha), 1)
+
+    score = int(success_rate / (1 - alpha) / 0.05) * 0.05
+    return min(score, 1)
