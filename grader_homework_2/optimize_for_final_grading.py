@@ -1,4 +1,6 @@
-is_optimized_for_final_grading = False
+class GradingOptimizer:
+    is_optimized_for_final_grading = False
 
-def optimize_for_final_grading():
-    is_optimized_for_final_grading = True
+    @classmethod
+    def optimize_for_final_grading(cls):
+        cls.is_optimized_for_final_grading = True
