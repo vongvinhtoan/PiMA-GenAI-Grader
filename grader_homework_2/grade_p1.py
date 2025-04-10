@@ -42,5 +42,7 @@ def grade(
         var = p * (1 - p) / N
         z = (p_hat - p) / np.sqrt(var)
         p_value = 2 * (1 - norm.cdf(abs(z)))
+        if p_value > alpha:
+            num_success += 1
 
     print(f"Number of trials passed: {num_success}/{num_trials}")
