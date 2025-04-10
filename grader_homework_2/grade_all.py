@@ -12,27 +12,32 @@ def grade_all(
     in_square_pdf,
     pdf_IS,
     better_sampling_IS,
-    better_pdf_IS
+    better_pdf_IS,
+    is_logging = False
 ):
     result_p1 = grade_p1(
         sample_needle,
-        is_lie_across
+        is_lie_across,
+        is_logging
     )
 
     result_p2 = grade_p2(
-        ImportanceSampling
+        ImportanceSampling,
+        is_logging
     )
 
     result_p3 = grade_p3(
         ImportanceSampling,
         in_square_pdf,
-        pdf_IS
+        pdf_IS,
+        is_logging
     )
 
     result_p4 = grade_p4(
         ImportanceSampling,
         better_sampling_IS,
-        better_pdf_IS
+        better_pdf_IS,
+        is_logging
     )
 
     html_template = Template("""

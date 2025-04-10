@@ -9,7 +9,8 @@ def MonteCarlo(q_sampler, f, N):
 
 def grade(
     sample_needle,
-    is_lie_across
+    is_lie_across,
+    is_logging = False
 ):
     random.seed(b'grade_p1')
 
@@ -46,4 +47,10 @@ def grade(
             num_success += 1
 
     success_rate = num_success / num_trials
+    if is_logging:
+        print(f"\n\tSuccess rate: {success_rate:.4f}")
+        print(f"\tNumber of success: {num_success}")
+        print(f"\tNumber of trials: {num_trials}")
+        print(f"\tAlpha: {alpha}")
+        print(f"\tN: {N}")
     return min(success_rate / (1 - alpha), 1)

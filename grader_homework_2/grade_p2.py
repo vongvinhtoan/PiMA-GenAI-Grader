@@ -4,8 +4,9 @@ from scipy.stats import norm
 from tqdm import tqdm
 
 def grade(
-    ImportanceSampling
+    ImportanceSampling,
+    is_logging = False
 ):
     random.seed(b'grade_p2')
 
-    
+
