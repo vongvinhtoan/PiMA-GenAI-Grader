@@ -3,6 +3,7 @@ import random
 from typing import *
 import numpy as np
 from tqdm import tqdm
+from .optimize_for_final_grading import is_optimized_for_final_grading
 
 def plot_approximation(
     student_id: Any,
@@ -13,6 +14,10 @@ def plot_approximation(
     method_name: str,
     num_trials: int
 ):
+    if is_optimized_for_final_grading:
+        print("This function is optimized out for final grading.")
+        return
+    
     random.seed(student_id)
 
     approximations = [
