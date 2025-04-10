@@ -15,7 +15,7 @@ def plot_approximation(
     num_trials: int
 ):
     if GradingOptimizer.is_optimized_for_final_grading:
-        print("This function is optimized out for final grading.")
+        print("Hàm này đã bị tối ưu hóa cho việc chấm điểm cuối cùng. Không thể chạy hàm này.")
         return
     
     random.seed(student_id)
