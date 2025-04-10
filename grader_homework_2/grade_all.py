@@ -12,23 +12,25 @@ def grade_all(
     better_sampling_IS,
     better_pdf_IS
 ):
-    grade_p1(
+    result_p1 = grade_p1(
         sample_needle,
         is_lie_across
     )
 
-    grade_p2(
+    result_p2 = grade_p2(
         ImportanceSampling
     )
 
-    grade_p3(
+    result_p3 = grade_p3(
         ImportanceSampling,
         in_square_pdf,
         pdf_IS
     )
 
-    grade_p4(
+    result_p4 = grade_p4(
         ImportanceSampling,
         better_sampling_IS,
         better_pdf_IS
     )
+
+    
