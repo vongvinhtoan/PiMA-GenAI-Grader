@@ -16,30 +16,46 @@ def grade_all(
     better_pdf_IS,
     is_logging = False
 ):
-    result_p1 = grade_p1(
+    try:
+      result_p1 = grade_p1(
         sample_needle,
         is_lie_across,
         is_logging
-    )
+      )
+    except Exception as e:
+      result_p1 = 0
+      print(f"Error grading Bài 1: {e}")
 
-    result_p2 = grade_p2(
+    try:
+      result_p2 = grade_p2(
         ImportanceSampling,
         is_logging
-    )
+      )
+    except Exception as e:
+      result_p2 = 0
+      print(f"Error grading Bài 2: {e}")
 
-    result_p3 = grade_p3(
+    try:
+      result_p3 = grade_p3(
         ImportanceSampling,
         in_square_pdf,
         pdf_IS,
         is_logging
-    )
+      )
+    except Exception as e:
+      result_p3 = 0
+      print(f"Error grading Bài 3: {e}")
 
-    result_p4 = grade_p4(
+    try:
+      result_p4 = grade_p4(
         ImportanceSampling,
         better_sampling_IS,
         better_pdf_IS,
         is_logging
-    )
+      )
+    except Exception as e:
+      result_p4 = 0
+      print(f"Error grading Bài 4: {e}")
 
     html_template = Template("""
 <div style="font-family: 'Segoe UI', sans-serif; max-width: 500px; margin: 20px auto; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); overflow: hidden;">
