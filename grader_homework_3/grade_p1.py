@@ -3,7 +3,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 
 # Load the array from the file
-array = np.load('function.npy')
+array = np.load(__file__ + '/function.npy')
 
 def hidden_function(x, y):
     if 0 <= x < array.shape[0] and 0 <= y < array.shape[1]:
