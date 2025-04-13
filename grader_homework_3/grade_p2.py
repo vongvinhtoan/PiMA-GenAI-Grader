@@ -44,8 +44,8 @@ def plot_function_conture():
 
 def plot_function_derivative_vector_field():
     # Create a grid of x, y values
-    x = np.linspace(-4, 4, 50)
-    y = np.linspace(-4, 4, 50)
+    x = np.linspace(-4, 4, 35)
+    y = np.linspace(-4, 4, 35)
     X, Y = np.meshgrid(x, y)
 
     # Compute the vector field components
@@ -60,7 +60,7 @@ def plot_function_derivative_vector_field():
 
     plt.figure(figsize=(8, 6))
     # Use quiver with coloring by magnitude
-    quiver = plt.quiver(X, Y, U_norm, V_norm, magnitude, cmap='plasma', scale=40)
+    quiver = plt.quiver(X, Y, U_norm, V_norm, magnitude, cmap='inferno', scale=40)
     plt.colorbar(quiver, label='Magnitude')
     plt.title("Vector Field of ∇f(x, y)")
     plt.xlabel("x")
