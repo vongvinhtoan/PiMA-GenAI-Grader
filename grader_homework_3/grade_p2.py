@@ -26,7 +26,7 @@ def plot_function_conture():
     contours = plt.contourf(X, Y, Z, levels=10, cmap='inferno')
     cbar = plt.colorbar(contours)
     cbar.set_label('Function Value')
-    plt.title("Contour Plot of Custom Function")
+    plt.title("Heatmap of f(x, y)")
     plt.xlabel("x")
     plt.ylabel("y")
     plt.grid(True)
