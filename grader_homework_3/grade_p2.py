@@ -23,8 +23,9 @@ def plot_function_conture():
 
     # Plot the contour
     plt.figure(figsize=(8, 6))
-    contours = plt.contour(X, Y, Z, levels=10, cmap='inferno')
-    plt.clabel(contours, inline=True, fontsize=8)
+    contours = plt.contourf(X, Y, Z, levels=10, cmap='inferno')
+    cbar = plt.colorbar(contours)
+    cbar.set_label('Function Value')
     plt.title("Contour Plot of Custom Function")
     plt.xlabel("x")
     plt.ylabel("y")
