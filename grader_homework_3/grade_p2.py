@@ -3,70 +3,56 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from .dual_number import *
 
-# Define the function
 def f(x, y):
     exp1 = exp(-((x**2 + y**2)/4 + (1/4)*x*y))
     exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
     return sin(3 * exp1)**2 + sin(3 * exp2)**2
 
-def f_derivative(x, y) -> tuple[float, float]:
-    """
-    Calculate the gradient of the function f at (x, y). Using dual numbers.
-    
-    Args:
-        x (float): x-coordinate.
-        y (float): y-coordinate.
-        
-    Returns:
-        tuple[float, float]: Gradient vector (df/dx, df/dy).
-    """
+def f_derivative(x, y):
     f_x = f(Dual(x, 1), Dual(y, 0))
     f_y = f(Dual(x, 0), Dual(y, 1))
     return f_x.dual, f_y.dual
 
-def plot_function_conture():
-    # Create a grid of x, y values
-    x = np.linspace(-4, 4, 400)
-    y = np.linspace(-4, 4, 400)
-    X, Y = np.meshgrid(x, y)
-    Z = f(X, Y)
-
-    # Plot the contour
-    plt.figure(figsize=(8, 6))
-    contours = plt.contour(X, Y, Z, levels=10, cmap='inferno')
-    plt.clabel(contours, inline=True, fontsize=8)
-    plt.title("Contour Plot of Custom Function")
-    plt.xlabel("x")
-    plt.ylabel("y")
-    plt.grid(True)
-    plt.axis("equal")
-    plt.show()
-
 def plot_function_derivative_vector_field():
-    # Create a grid of x, y values
+    # Grid for vector field
     x = np.linspace(-4, 4, 35)
     y = np.linspace(-4, 4, 35)
     X, Y = np.meshgrid(x, y)
-
-    # Compute the vector field components
     U, V = f_derivative(X, Y)
-
-    # Compute magnitude for coloring
     magnitude = np.sqrt(U**2 + V**2)
+    U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude != 0)
+    V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude != 0)
 
-    # Normalize vectors to unit length, avoid division by zero
-    U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude!=0)
-    V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude!=0)
+    # Grid for contour (higher resolution)
+    x_dense = np.linspace(-4, 4, 400)
+    y_dense = np.linspace(-4, 4, 400)
+    X_dense, Y_dense = np.meshgrid(x_dense, y_dense)
+    Z = f(X_dense, Y_dense)
 
-    plt.figure(figsize=(8, 6))
-    # Use quiver with coloring by magnitude
-    quiver = plt.quiver(X, Y, U_norm, V_norm, magnitude, cmap='inferno', scale=40)
-    plt.colorbar(quiver, label='Magnitude')
-    plt.title("Vector Field of ∇f(x, y)")
-    plt.xlabel("x")
-    plt.ylabel("y")
-    plt.grid(True)
-    plt.axis("equal")
+    # Create subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+    # Left plot: vector field
+    q1 = ax1.quiver(X, Y, U_norm, V_norm, magnitude, cmap='Greys', scale=40)
+    cb1 = fig.colorbar(q1, ax=ax1)
+    cb1.set_label('Magnitude')
+    ax1.set_title("Vector Field of ∇f(x, y)")
+    ax1.set_xlabel("x")
+    ax1.set_ylabel("y")
+    ax1.axis("equal")
+    ax1.grid(True)
+
+    # Right plot: vector field + contour
+    contour = ax2.contour(X_dense, Y_dense, Z, levels=10, cmap='inferno', alpha=0.6)
+    ax2.clabel(contour, inline=True, fontsize=8)
+    q2 = ax2.quiver(X, Y, U_norm, V_norm, magnitude, cmap='Greys', scale=40)
+    ax2.set_title("Vector Field with Contour Overlay")
+    ax2.set_xlabel("x")
+    ax2.set_ylabel("y")
+    ax2.axis("equal")
+    ax2.grid(True)
+
+    plt.tight_layout()
     plt.show()
 
 def plot_samples_with_contour(samples):
