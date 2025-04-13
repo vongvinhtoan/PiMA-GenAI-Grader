@@ -44,8 +44,8 @@ def plot_function_conture():
 
 def plot_function_derivative_vector_field():
     # Create a grid of x, y values
-    x = np.linspace(-4, 4, 20)
-    y = np.linspace(-4, 4, 20)
+    x = np.linspace(-4, 4, 50)
+    y = np.linspace(-4, 4, 50)
     X, Y = np.meshgrid(x, y)
 
     # Compute the vector field components
