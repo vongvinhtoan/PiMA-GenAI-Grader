@@ -54,11 +54,15 @@ def plot_function_derivative_vector_field():
     # Compute magnitude for coloring
     magnitude = np.sqrt(U**2 + V**2)
 
+    # Normalize vectors to unit length, avoid division by zero
+    U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude!=0)
+    V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude!=0)
+
     plt.figure(figsize=(8, 6))
     # Use quiver with coloring by magnitude
-    quiver = plt.quiver(X, Y, U, V, magnitude, cmap='plasma', scale=40)
+    quiver = plt.quiver(X, Y, U_norm, V_norm, magnitude, cmap='plasma', scale=40)
     plt.colorbar(quiver, label='Magnitude')
-    plt.title("Vector Field of f(x, y)")
+    plt.title("Vector Field of ∇f(x, y)")
     plt.xlabel("x")
     plt.ylabel("y")
     plt.grid(True)
