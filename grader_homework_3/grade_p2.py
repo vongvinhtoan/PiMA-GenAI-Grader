@@ -12,7 +12,7 @@ def f(x, y):
 def f_derivative(x, y):
     f_x = f(Dual(x, 1), Dual(y, 0))
     f_y = f(Dual(x, 0), Dual(y, 1))
-    return f_x.dual, f_y.dual
+    return np.array([f_x.dual, f_y.dual], dtype=float)
 
 def plot_function_conture():
     # Create a grid of x, y values
