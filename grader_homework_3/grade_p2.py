@@ -42,6 +42,29 @@ def plot_function_conture():
     plt.axis("equal")
     plt.show()
 
+def plot_function_derivative_vector_field():
+    # Create a grid of x, y values
+    x = np.linspace(-4, 4, 20)
+    y = np.linspace(-4, 4, 20)
+    X, Y = np.meshgrid(x, y)
+
+    # Compute the vector field components
+    U, V = f_derivative(X, Y)
+
+    # Compute magnitude for coloring
+    magnitude = np.sqrt(U**2 + V**2)
+
+    plt.figure(figsize=(8, 6))
+    # Use quiver with coloring by magnitude
+    quiver = plt.quiver(X, Y, U, V, magnitude, cmap='plasma', scale=40)
+    plt.colorbar(quiver, label='Magnitude')
+    plt.title("Vector Field of f(x, y)")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid(True)
+    plt.axis("equal")
+    plt.show()
+
 def plot_samples_with_contour(samples):
     x_samples, y_samples = zip(*samples)
 
