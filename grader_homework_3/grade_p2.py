@@ -1,13 +1,28 @@
 import numpy as np
-from tqdm import tqdm
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
+from .dual_number import *
 
 # Define the function
 def f(x, y):
-    exp1 = np.exp(-((x**2 + y**2)/4 + (1/4)*x*y))
-    exp2 = np.exp(-((x**2 + y**2)/4 - (1/4)*x*y))
-    return np.sin(3 * exp1)**2 + np.sin(3 * exp2)**2
+    exp1 = exp(-((x**2 + y**2)/4 + (1/4)*x*y))
+    exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
+    return sin(3 * exp1)**2 + sin(3 * exp2)**2
+
+def f_derivative(x, y) -> tuple[float, float]:
+    """
+    Calculate the gradient of the function f at (x, y). Using dual numbers.
+    
+    Args:
+        x (float): x-coordinate.
+        y (float): y-coordinate.
+        
+    Returns:
+        tuple[float, float]: Gradient vector (df/dx, df/dy).
+    """
+    f_x = f(Dual(x, 1), Dual(y, 0))
+    f_y = f(Dual(x, 0), Dual(y, 1))
+    return f_x.dual, f_y.dual
 
 def plot_function_conture():
     # Create a grid of x, y values
