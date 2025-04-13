@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from .dual_number import *
 
+# Define the function
 def f(x, y):
     exp1 = exp(-((x**2 + y**2)/4 + (1/4)*x*y))
     exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
@@ -13,10 +14,29 @@ def f_derivative(x, y):
     f_y = f(Dual(x, 0), Dual(y, 1))
     return f_x.dual, f_y.dual
 
+def plot_function_conture():
+    # Create a grid of x, y values
+    x = np.linspace(-4, 4, 400)
+    y = np.linspace(-4, 4, 400)
+    X, Y = np.meshgrid(x, y)
+    Z = f(X, Y)
+
+    # Plot the contour
+    plt.figure(figsize=(8, 6))
+    contours = plt.contour(X, Y, Z, levels=10, cmap='inferno')
+    plt.clabel(contours, inline=True, fontsize=8)
+    plt.title("Contour Plot of Custom Function")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid(True)
+    plt.axis("equal")
+    plt.show()
+
 def plot_function_derivative_vector_field():
     # Grid for vector field
-    x = np.linspace(-4, 4, 35)
-    y = np.linspace(-4, 4, 35)
+    span = 35
+    x = np.linspace(-4, 4, span)
+    y = np.linspace(-4, 4, span)
     X, Y = np.meshgrid(x, y)
     U, V = f_derivative(X, Y)
     magnitude = np.sqrt(U**2 + V**2)
