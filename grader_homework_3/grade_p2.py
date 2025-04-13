@@ -28,7 +28,7 @@ def plot_function_conture():
     plt.show()
 
 def plot_samples_with_contour(samples):
-    x_samples, y_samples = zip(samples)
+    x_samples, y_samples = zip(*samples)
 
     # --- Grid and Contour ---
     x = y = np.linspace(-4, 4, 400)
