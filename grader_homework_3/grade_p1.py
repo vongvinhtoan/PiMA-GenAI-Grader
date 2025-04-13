@@ -35,3 +35,8 @@ def plot_samples(samples: list[tuple[float, float]]):
     plt.colorbar(hist[3])
 
     plt.show()
+
+__all__ = [
+    'hidden_function', 
+    'plot_samples'
+]
