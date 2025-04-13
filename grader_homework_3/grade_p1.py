@@ -1,9 +1,12 @@
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+dir_path = Path(__file__).resolve().parent
 
 # Load the array from the file
-array = np.load(__file__ + '/function.npy')
+array = np.load(dir_path / 'function.npy')
 
 def hidden_function(x, y):
     if 0 <= x < array.shape[0] and 0 <= y < array.shape[1]:
