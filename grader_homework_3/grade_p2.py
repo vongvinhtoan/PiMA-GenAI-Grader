@@ -3,8 +3,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 
 # Define the function
-def f(p):
-    x, y = p
+def f(x, y):
     exp1 = np.exp(-((x**2 + y**2)/4 + (1/4)*x*y))
     exp2 = np.exp(-((x**2 + y**2)/4 - (1/4)*x*y))
     return np.sin(3 * exp1)**2 + np.sin(3 * exp2)**2
