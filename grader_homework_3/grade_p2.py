@@ -112,3 +112,47 @@ def test_function_contour(f_tested):
     plt.tight_layout()
     plt.show()
 
+def test_function_derivative_vector_field(grad_f):
+    # Grid for vector field
+    span = 35
+    x = np.linspace(-4, 4, span)
+    y = np.linspace(-4, 4, span)
+    X, Y = np.meshgrid(x, y)
+
+    # Load the function values from a file
+    U = np.load(dir_path / 'U.npy')
+    V = np.load(dir_path / 'V.npy')
+
+    # Normalize the vector field
+    magnitude = np.sqrt(U**2 + V**2)
+    U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude != 0)
+    V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude != 0)
+
+    # Create subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+    # Left plot: vector field
+    q1 = ax1.quiver(X, Y, U_norm, V_norm, magnitude, cmap='Greys', scale=40)
+    cb1 = fig.colorbar(q1, ax=ax1)
+    cb1.set_label("Độ lớn của vector")
+    ax1.set_title("Trường vector của $\\nabla f(x, y)$")
+    ax1.set_xlabel("$x$")
+    ax1.set_ylabel("$y$")
+    ax1.axis("equal")
+    ax1.grid(True)
+
+    # Right plot: vector field + contour
+    x_dense = np.linspace(-4, 4, 400)
+    y_dense = np.linspace(-4, 4, 400)
+    X_dense, Y_dense = np.meshgrid(x_dense, y_dense)
+    Z = np.load(dir_path / 'Z.npy')
+    contour = ax2.contour(X_dense, Y_dense, Z, levels=10, cmap='inferno', alpha=0.6)
+    ax2.clabel(contour, inline=True, fontsize=8)
+    q2 = ax2.quiver(X, Y, U_norm, V_norm, magnitude, cmap='Greys', scale=40)
+    ax2.set_title("Trường vector của $\\nabla f(x, y)$ + Đường đồng mức của $f(x, y)$")
+    ax2.set_xlabel("$x$")
+    ax2.set_ylabel("$y$")
+    ax2.axis("equal")
+    ax2.grid(True)
+    plt.tight_layout()
+    plt.show()
