@@ -76,24 +76,38 @@ def plot_function_derivative_vector_field():
     plt.tight_layout()
     plt.show()
 
-def test_function_contour(f):
+def test_function_contour(f_tested):
     # Create a grid of x, y values
     x = np.linspace(-4, 4, 400)
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
     
-    Z = f(torch.tensor(X), torch.tensor(Y)).numpy()
+    Z_tested = f_tested(torch.tensor(X), torch.tensor(Y)).numpy()
+    Z_jury = np.load(dir_path / 'Z.npy')
 
-    # Plot the contour
-    plt.figure(figsize=(8, 6))
-    contours = plt.contourf(X, Y, Z, levels=10, cmap='inferno')
+    # Create subplots for comparison
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-    cbar = plt.colorbar(contours)
-    cbar.set_label('Giá trị của hàm $f(x, y)$')
-    plt.title("Biểu đồ nhiệm hàm $f(x, y)$")
-    plt.xlabel("$x$")
-    plt.ylabel("$y$")
-    plt.grid(True)
-    plt.axis("equal")
+    # Left plot: Tested function
+    contours1 = ax1.contourf(X, Y, Z_tested, levels=10, cmap='inferno')
+    cbar1 = fig.colorbar(contours1, ax=ax1)
+    cbar1.set_label('Giá trị của hàm $f_{tested}(x, y)$')
+    ax1.set_title("Biểu đồ nhiệm hàm $f_{tested}(x, y)$")
+    ax1.set_xlabel("$x$")
+    ax1.set_ylabel("$y$")
+    ax1.grid(True)
+    ax1.axis("equal")
+
+    # Right plot: Jury function
+    contours2 = ax2.contourf(X, Y, Z_jury, levels=10, cmap='inferno')
+    cbar2 = fig.colorbar(contours2, ax=ax2)
+    cbar2.set_label('Giá trị của hàm $f_{jury}(x, y)$')
+    ax2.set_title("Biểu đồ nhiệm hàm $f_{jury}(x, y)$")
+    ax2.set_xlabel("$x$")
+    ax2.set_ylabel("$y$")
+    ax2.grid(True)
+    ax2.axis("equal")
+
+    plt.tight_layout()
     plt.show()
 
