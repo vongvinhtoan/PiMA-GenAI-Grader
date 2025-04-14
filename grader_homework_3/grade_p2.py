@@ -82,7 +82,7 @@ def test_function_contour(f_tested):
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
     
-    Z_tested = f_tested(torch.tensor(X), torch.tensor(Y)).numpy()
+    Z_tested = f_tested(torch.tensor([X.flatten(), Y.flatten()]).T).reshape(X.shape).numpy()
     Z_jury = np.load(dir_path / 'Z.npy')
 
     # Create subplots for comparison
