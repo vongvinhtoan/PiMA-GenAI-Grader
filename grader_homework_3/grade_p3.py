@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pathlib import Path
-import torch
 
 dir_path = Path(__file__).resolve().parent
 
@@ -12,8 +11,7 @@ def plot_samples_with_contour(f, samples):
     # --- Grid and Contour ---
     x = y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
-    tensor = torch.tensor(np.array([X.flatten(), Y.flatten()]), dtype=torch.float32)
-    Z = f(tensor).reshape(X.shape).numpy()
+    Z = f(np.array([X.flatten(), Y.flatten()])).reshape(X.shape)
     fig = plt.figure(figsize=(14, 6))
     gs = gridspec.GridSpec(1, 3, width_ratios=[1, 1, 0.05], wspace=0.2)
 

@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pathlib import Path
-import torch
 from matplotlib.colors import LinearSegmentedColormap
 
 dir_path = Path(__file__).resolve().parent
@@ -83,8 +82,7 @@ def test_function_contour(f_tested):
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
     
-    tensor = torch.tensor(np.array([X.flatten(), Y.flatten()]))
-    Z_tested = f_tested(tensor).reshape(X.shape).numpy()
+    Z_tested = f_tested(np.array([X.flatten(), Y.flatten()])).reshape(X.shape)
     Z_jury = np.load(dir_path / 'Z.npy')
 
     # Create subplots for comparison
@@ -121,10 +119,9 @@ def test_function_derivative_vector_field(grad_f):
     X, Y = np.meshgrid(x, y)
 
     # Load the function values from a file
-    tensor = torch.tensor(np.array([X.flatten(), Y.flatten()]), dtype=torch.float32)
-    out = grad_f(tensor)
-    U = out[0].reshape(X.shape).numpy()
-    V = out[1].reshape(X.shape).numpy()
+    out = grad_f(np.array([X.flatten(), Y.flatten()]))
+    U = out[0].reshape(X.shape)
+    V = out[1].reshape(X.shape)
 
     # Normalize the vector field
     magnitude = np.sqrt(U**2 + V**2)
