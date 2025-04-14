@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
+from pathlib import Path
+
+dir_path = Path(__file__).resolve().parent
 
 def plot_function_conture():
     # Create a grid of x, y values
@@ -8,7 +11,7 @@ def plot_function_conture():
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
     
-    Z = np.load('Z.npy')
+    Z = np.load(dir_path / 'Z.npy')
 
     # Plot the contour
     plt.figure(figsize=(8, 6))
@@ -31,8 +34,8 @@ def plot_function_derivative_vector_field():
     X, Y = np.meshgrid(x, y)
 
     # Load the function values from a file
-    U = np.load('U.npy')
-    V = np.load('V.npy')
+    U = np.load(dir_path / 'U.npy')
+    V = np.load(dir_path / 'V.npy')
 
     # Normalize the vector field
     magnitude = np.sqrt(U**2 + V**2)
@@ -44,7 +47,7 @@ def plot_function_derivative_vector_field():
     y_dense = np.linspace(-4, 4, 400)
     X_dense, Y_dense = np.meshgrid(x_dense, y_dense)
 
-    Z = np.load('Z.npy')
+    Z = np.load(dir_path / 'Z.npy')
 
     # Create subplots
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
