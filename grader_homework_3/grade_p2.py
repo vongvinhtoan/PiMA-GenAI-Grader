@@ -9,7 +9,7 @@ def f(x, y):
     exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
     return sin(3 * exp1)**2 + sin(3 * exp2)**2
 
-def f_derivative(x, y):
+def grad_f(x, y):
     f_x = f(Dual(x, 1), Dual(y, 0))
     f_y = f(Dual(x, 0), Dual(y, 1))
     return np.array([f_x.dual, f_y.dual], dtype=float)
@@ -39,7 +39,7 @@ def plot_function_derivative_vector_field():
     x = np.linspace(-4, 4, span)
     y = np.linspace(-4, 4, span)
     X, Y = np.meshgrid(x, y)
-    U, V = f_derivative(X, Y)
+    U, V = grad_f(X, Y)
     magnitude = np.sqrt(U**2 + V**2)
     U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude != 0)
     V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude != 0)
