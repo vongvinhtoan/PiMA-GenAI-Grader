@@ -1,29 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from .dual_number import *
-
-# Define the function
-def f(x, y):
-    exp1 = exp(-((x**2 + y**2)/4 + (1/4)*x*y))
-    exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
-    return sin(3 * exp1)**2 + sin(3 * exp2)**2
-
-def grad_f(x, y):
-    f_x = f(Dual(x, 1), Dual(y, 0))
-    f_y = f(Dual(x, 0), Dual(y, 1))
-    return np.array([f_x.dual, f_y.dual], dtype=float)
 
 def plot_function_conture():
     # Create a grid of x, y values
     x = np.linspace(-4, 4, 400)
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
-    Z = f(X, Y)
+    
+    Z = np.load('Z.npy')
 
     # Plot the contour
     plt.figure(figsize=(8, 6))
     contours = plt.contourf(X, Y, Z, levels=10, cmap='inferno')
+
     cbar = plt.colorbar(contours)
     cbar.set_label('Function Value')
     plt.title("Heatmap of f(x, y)")
@@ -39,7 +29,12 @@ def plot_function_derivative_vector_field():
     x = np.linspace(-4, 4, span)
     y = np.linspace(-4, 4, span)
     X, Y = np.meshgrid(x, y)
-    U, V = grad_f(X, Y)
+
+    # Load the function values from a file
+    U = np.load('U.npy')
+    V = np.load('V.npy')
+
+    # Normalize the vector field
     magnitude = np.sqrt(U**2 + V**2)
     U_norm = np.divide(U, magnitude, out=np.zeros_like(U), where=magnitude != 0)
     V_norm = np.divide(V, magnitude, out=np.zeros_like(V), where=magnitude != 0)
@@ -48,7 +43,8 @@ def plot_function_derivative_vector_field():
     x_dense = np.linspace(-4, 4, 400)
     y_dense = np.linspace(-4, 4, 400)
     X_dense, Y_dense = np.meshgrid(x_dense, y_dense)
-    Z = f(X_dense, Y_dense)
+
+    Z = np.load('Z.npy')
 
     # Create subplots
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
@@ -76,7 +72,7 @@ def plot_function_derivative_vector_field():
     plt.tight_layout()
     plt.show()
 
-def plot_samples_with_contour(samples):
+def plot_samples_with_contour(f, samples):
     x_samples, y_samples = zip(*samples)
 
     # --- Grid and Contour ---
@@ -99,6 +95,7 @@ def plot_samples_with_contour(samples):
     ax2 = fig.add_subplot(gs[1])
     _, _, _, img2 = ax2.hist2d(x_samples, y_samples, bins=200, cmap='viridis', alpha=0.8)
     contours = ax2.contour(X, Y, Z, levels=10, linewidths=1, cmap='inferno')
+
     ax2.clabel(contours, inline=True, fontsize=8)
     ax2.set_title("Heatmap + Contour Overlay")
     ax2.set_xlabel("x")
@@ -111,3 +108,6 @@ def plot_samples_with_contour(samples):
     fig.colorbar(img2, cax=cax, label='Point Density')
 
     plt.show()
+
+plot_function_conture()
+plot_function_derivative_vector_field()
