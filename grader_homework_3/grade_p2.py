@@ -74,3 +74,25 @@ def plot_function_derivative_vector_field():
 
     plt.tight_layout()
     plt.show()
+
+def test_function_contour(f):
+    # Create a grid of x, y values
+    x = np.linspace(-4, 4, 400)
+    y = np.linspace(-4, 4, 400)
+    X, Y = np.meshgrid(x, y)
+    
+    Z = f(X, Y)
+
+    # Plot the contour
+    plt.figure(figsize=(8, 6))
+    contours = plt.contourf(X, Y, Z, levels=10, cmap='inferno')
+
+    cbar = plt.colorbar(contours)
+    cbar.set_label('Giá trị của hàm $f(x, y)$')
+    plt.title("Biểu đồ nhiệm hàm $f(x, y)$")
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+    plt.grid(True)
+    plt.axis("equal")
+    plt.show()
+
