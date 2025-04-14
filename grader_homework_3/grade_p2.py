@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pathlib import Path
+import torch
 
 dir_path = Path(__file__).resolve().parent
 
@@ -81,7 +82,7 @@ def test_function_contour(f):
     y = np.linspace(-4, 4, 400)
     X, Y = np.meshgrid(x, y)
     
-    Z = f(X, Y)
+    Z = f(torch.tensor(X), torch.tensor(Y)).numpy()
 
     # Plot the contour
     plt.figure(figsize=(8, 6))
