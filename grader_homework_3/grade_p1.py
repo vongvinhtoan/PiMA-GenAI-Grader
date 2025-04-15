@@ -29,8 +29,8 @@ def plot_samples(samples: list[tuple[float, float]]):
     # Create the heatmap
     hist = plt.hist2d(y_samples, -x_samples, bins=180, cmap='viridis', alpha=0.8)
     plt.title("Biểu đồ nhiệt của các điểm đã lấy mẫu")
-    plt.xlabel("x")
-    plt.ylabel("y")
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
     plt.gca().set_aspect("equal", adjustable="box")
     plt.grid(True)
 
