@@ -31,7 +31,7 @@ def plot_samples_with_contour(f, samples):
     contours = ax2.contour(X, Y, Z, levels=10, linewidths=1, cmap='inferno')
 
     ax2.clabel(contours, inline=True, fontsize=8)
-    ax2.set_title("Biểu đồ nhiệt + Đường đồng mức của $f(\\bf{x})$")
+    ax2.set_title("Biểu đồ nhiệt + Đường đồng mức của $f(\\boldsymbol{x})$")
     ax2.set_xlabel("$x$")
     ax2.set_ylabel("$y$")
     ax2.set_aspect("equal", adjustable="box")
