@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pathlib import Path
+from .dual_number import *
 
 dir_path = Path(__file__).resolve().parent
 
@@ -41,3 +42,17 @@ def plot_samples_with_contour(f, samples):
     fig.colorbar(img2, cax=cax, label='Point Density')
 
     plt.show()
+
+def grad_f_fast(x: np.ndarray) -> np.ndarray:
+    """
+    Tính đạo hàm của hàm đồng biến với hàm mật độ xác suất mục tiêu $p(x)$
+    """
+
+    def f(x, y):
+        exp1 = exp(-((x**2 + y**2)/4 + (1/4)*x*y))
+        exp2 = exp(-((x**2 + y**2)/4 - (1/4)*x*y))
+        return sin(3 * exp1)**2 + sin(3 * exp2)**2
+    
+    f_x = f(Dual(x[0], 1), Dual(x[1], 0)).dual
+    f_y = f(Dual(x[0], 0), Dual(x[1], 1)).dual
+    return np.array([f_x, f_y])
