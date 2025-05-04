@@ -11,3 +11,4 @@ torch
 ipywidgets
 scikit-learn
 torchvision
+umap-learn
